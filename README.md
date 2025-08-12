@@ -1,0 +1,1 @@
+python src/evaluate.py     --model_path "/home/sslab/24m0786/stance_aware_opinion_mining/results/models/triplet_model"     --output_filename "baseline_similarity_dist_triplet.png"
