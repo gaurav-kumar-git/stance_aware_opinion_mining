@@ -54,13 +54,15 @@ conda activate stance_env
 ### 2️⃣ Train a Model
 
 ```bash
-python src/train.py --model_type siamese
+(i) python src/train.py --model_type siamese #for siamese model
+(ii) python src/train.py --model_type triplet #for triplet model
 ```
 
 ### 3️⃣ Evaluate
 
 ```bash
-python src/evaluate.py --model_path results/models/siamese_model
+(i) python src/evaluate.py --model_path results/models/siamese_model
+(ii) python src/evaluate.py --model_path results/models/triplet_model
 ```
 
 ---
