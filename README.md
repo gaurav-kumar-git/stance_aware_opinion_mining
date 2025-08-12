@@ -75,9 +75,3 @@ Example cosine similarity distribution plots can be found in `results/plots/`:
 * `baseline_similarity_dist_triplet.png`
 
 ---
-
-## 📜 License
-
-This project is licensed under the MIT License.
-
-```
