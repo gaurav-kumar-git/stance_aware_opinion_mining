@@ -33,7 +33,7 @@ stance\_aware\_opinion\_mining/
 ├── src/
 │   ├── train.py              # Model training script
 │   ├── evaluate.py           # Evaluation & visualization script
-│   ├── data\_loader.py        # Data loading & preprocessing
+│   ├── data_loader.py        # Data loading & preprocessing
 │   └── config.py             # Paths, hyperparameters, constants
 ├── environment.yml           # Conda environment specification
 └── README.md                 # Project documentation
