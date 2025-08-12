@@ -1,0 +1,26 @@
+name: stance-aware-transformers
+
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=11.8
+  - pip
+  - transformers
+  - datasets
+  - accelerate
+  - tqdm
+  - matplotlib
+  - numpy
+  - seaborn 
+  - scikit-learn
+
+  - pip:
+    - sentence-transformers
