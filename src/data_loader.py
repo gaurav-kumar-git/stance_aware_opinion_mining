@@ -10,7 +10,6 @@ from tqdm import tqdm
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_train_from_debate_directory(directory_path: str) -> Dataset:
-    # ... (This function is correct and does not need changes)
     logging.info(f"Parsing training data from debate directory: {directory_path}")
     if not os.path.isdir(directory_path):
         raise FileNotFoundError(f"The specified training directory does not exist: {directory_path}")
@@ -51,12 +50,11 @@ def preprocess_hf_kialo_split(dataset_split: Dataset) -> Dataset:
     """
     processed_rows = []
     for row in dataset_split:
-        # The assignment specifies that for binary perspectives, the first is pro, the second is con.
         if len(row['perspectives']) >= 2:
             processed_rows.append({
                 'discussion_title': row['question'],
-                'pro_arguments': [row['perspectives'][0]],  # Wrap in a list to match train format
-                'con_arguments': [row['perspectives'][1]]   # Wrap in a list
+                'pro_arguments': [row['perspectives'][0]],  
+                'con_arguments': [row['perspectives'][1]]   
             })
     return Dataset.from_list(processed_rows)
 
@@ -67,19 +65,15 @@ def load_and_combine_data(train_dir_path: str, hf_dataset_dir: str) -> DatasetDi
     """
     logging.info("--- Loading and combining data from all sources ---")
     try:
-        # 1. Load the training data using our directory parser.
         train_split = load_train_from_debate_directory(train_dir_path)
 
-        # 2. Load the raw validation/test data from disk.
         logging.info(f"Loading validation/test data from disk: '{hf_dataset_dir}'")
         raw_val_test_dataset = load_from_disk(hf_dataset_dir)
 
-        # 3. Preprocess the validation and test splits to match the training schema.
         logging.info("Preprocessing validation and test splits to unify schemas...")
         processed_validation_split = preprocess_hf_kialo_split(raw_val_test_dataset['validation'])
         processed_test_split = preprocess_hf_kialo_split(raw_val_test_dataset['test'])
 
-        # 4. Construct the final, unified DatasetDict.
         final_dataset = DatasetDict({
             'train': train_split,
             'validation': processed_validation_split,
@@ -94,9 +88,7 @@ def load_and_combine_data(train_dir_path: str, hf_dataset_dir: str) -> DatasetDi
         logging.error(f"Failed to load datasets. Please check paths in config.py. Error: {e}")
         raise
 
-# --- Training Example Creation Functions (NO CHANGES NEEDED) ---
 def create_siamese_examples(dataset_split):
-    # ... no changes here
     examples = []
     logging.info("Creating Siamese (pairwise) examples...")
     for row in tqdm(dataset_split, desc="Creating Siamese pairs"):
@@ -107,7 +99,6 @@ def create_siamese_examples(dataset_split):
     return examples
 
 def create_triplet_examples(dataset_split):
-    # ... no changes here
     examples = []
     logging.info("Creating Triplet examples...")
     for row in tqdm(dataset_split, desc="Creating triplets"):
