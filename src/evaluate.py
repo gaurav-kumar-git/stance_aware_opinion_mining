@@ -12,16 +12,13 @@ import config
 def evaluate_model(model_path: str, output_plot_path: str, data_split: str = 'validation'):
     logging.info(f"--- Starting Evaluation for model: {model_path} on '{data_split}' split ---")
 
-    # 1. Load the model
     model = SentenceTransformer(model_path)
 
-    # 2. Load datasets from local CSVs specified in config
     dataset = load_and_combine_data(
         train_dir_path=config.LOCAL_TRAIN_DATA_DIR,
         hf_dataset_dir=config.LOCAL_HF_DATASET_DIR
     )
-    # The new data loader makes the validation/test data have lists of arguments
-    # We will just take the first one for evaluation simplicity.
+
     eval_data = dataset[data_split].map(lambda x: {
         'discussion_title': x['discussion_title'],
         'pro_argument': x['pro_arguments'][0],
