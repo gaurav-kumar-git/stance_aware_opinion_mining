@@ -1,5 +1,3 @@
-# In file: src/data_loader.py
-
 import os
 import re
 import logging
