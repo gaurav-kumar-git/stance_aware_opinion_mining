@@ -37,7 +37,8 @@ def main():
         model.fit(
             train_objectives=[(train_dataloader, train_loss)],
             epochs=config.NUM_EPOCHS, warmup_steps=warmup_steps,
-            output_path=save_path
+            output_path=save_path,
+            learning_rate=config.LEARNING_RATE
         )
     else:
         logging.info("Creating Triplet examples (this may still take a moment)...")
@@ -64,6 +65,7 @@ def main():
             train_objectives=[(train_dataloader, train_loss)],
             epochs=config.NUM_EPOCHS,  warmup_steps=warmup_steps,
             output_path=save_path,
+            learning_rate=config.LEARNING_RATE
         )
 
     logging.info(f"Training complete. Model saved to {save_path}")
